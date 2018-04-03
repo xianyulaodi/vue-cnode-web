@@ -9,6 +9,7 @@ const getters = {
   topics: state => state.topics
 }
 
+// 调用commit，提交一个 mutation
 const actions = {
   [types.GET_TOPICS] ({ commit }, params) {
     getTopics(params, function (res) {
@@ -19,6 +20,7 @@ const actions = {
   }
 }
 
+// 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
 const mutations = {
   [types.GET_TOPICS] (state, data) {
     state.topics = data

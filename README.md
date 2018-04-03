@@ -40,3 +40,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   package.json里面  加个 --open可以自动打开浏览器
 
   `"dev": "webpack-dev-server --inline --open --progress --config build/webpack.dev.conf.js"`
+
+
+  [如何在Github Pages搭建自己写的页面？](https://www.cnblogs.com/lijiayi/p/githubpages.html)
+
+  1. 快速删除 node_modules文件夹
+  `npm install -g rimraf` 然后 `rimraf node_modules`
