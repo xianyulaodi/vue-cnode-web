@@ -28,3 +28,15 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## 使用vue构建cnode中文网
+
+  技术栈： vue、vuex、vue-router、axios、element-ui
+
+
+  可以参考这个项目： https://github.com/soulcm/vue-cnode-mobile
+
+  package.json里面  加个 --open可以自动打开浏览器
+
+  `"dev": "webpack-dev-server --inline --open --progress --config build/webpack.dev.conf.js"`
