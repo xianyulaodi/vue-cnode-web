@@ -8,7 +8,9 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+// 去掉eslink的一些提示，神烦，如果想要，解开注释
 const createLintingRule = () => ({
+  /*
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
@@ -17,6 +19,7 @@ const createLintingRule = () => ({
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
+  */
 })
 
 module.exports = {

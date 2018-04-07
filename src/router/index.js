@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/index'
+import Detail from '@/views/detail'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -14,6 +15,11 @@ export default new Router({
       path: '/list',
       name: 'list',
       component: Index
+    },
+    {
+      path: '/detail',
+      name:'detail',
+      component: Detail
     }
   ]
 })

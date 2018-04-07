@@ -45,13 +45,13 @@ export default {
 
 <style lang="scss">
   .header {
-    mask {
+    .mask {
       position: fixed;
       left: 0;
       right: 0;
-      top: 0;
-      height: 0;
-      background: rgba(0, 0, 0, .5);
+      top: 30px;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
     }
     .header-bar {
       overflow: hidden;

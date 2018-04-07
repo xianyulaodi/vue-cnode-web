@@ -3,7 +3,7 @@
     <!-- <user-info></user-info> -->
     <div class="menu-list">
       <router-link :to="{name: 'list', query: {tab: 'all'}}">
-        全部
+        <i class="iconfont icon-quanbu"></i>全部
       </router-link>
       <router-link :to="{name: 'list', query: {tab: 'good'}}">
         精华
