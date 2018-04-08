@@ -66,3 +66,17 @@ export const upReply = (params, succCall, failCall) => {
       failCall(err)
     })
 }
+
+export const messageCount = (params, succCall, failCall) => {
+  axios.get(basiUrl + '/message/count', {
+    params: {
+      accesstoken: params.accesstoken
+    }
+  })
+    .then(function (res) {
+      succCall(res)
+    })
+    .catch(function (err) {
+      failCall(err)
+    })
+} 

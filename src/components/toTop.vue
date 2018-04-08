@@ -1,11 +1,10 @@
 <template>
-  <div class="iconfont icon-top" v-show="show" @click="backToTop">
-    回到顶部
+  <div class="iconfont icon-uptop" v-show="show" @click="backToTop">
   </div>
 </template>
 
 <style lang="scss">
-  .iconfont.icon-top {
+  .iconfont.icon-uptop {
     position: fixed;
     right: 10px;
     bottom: 80px;
