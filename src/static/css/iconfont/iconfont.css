@@ -23,6 +23,33 @@
   overflow: hidden;
 }
 
-.icon-dianzan:before { content: "\e659"; }
+.icon-loading:before { content: "\e602"; }
 
-.icon-menu:before { content: "\e628"; }
+.icon-wenda:before { content: "\e608"; }
+
+.icon-quanbu:before { content: "\e614"; }
+
+.icon-share:before { content: "\e61a"; }
+
+.icon-uptop:before { content: "\e6e7"; }
+
+.icon-guanyu:before { content: "\e610"; }
+
+.icon-xiaoxi:before { content: "\e619"; }
+
+.icon-publish:before { content: "\e600"; }
+
+.icon-hf:before { content: "\e63b"; }
+
+.icon-dianzan:before { content: "\e603"; }
+
+.icon-jinghua:before { content: "\e724"; }
+
+.icon-denglu:before { content: "\e60d"; }
+
+.icon-zhaopin:before { content: "\e613"; }
+
+.icon-empty:before { content: "\e6c1"; }
+
+.icon-login:before { content: "\e601"; }
+

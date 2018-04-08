@@ -46,3 +46,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
   1. 快速删除 node_modules文件夹
   `npm install -g rimraf` 然后 `rimraf node_modules`
+
+  登录： myAccessToken: "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4"

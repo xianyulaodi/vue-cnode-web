@@ -6,7 +6,7 @@
         <li v-for="(item,index) in topics" :key="index">
           <router-link key="item.id" :to="{ name: 'detail',params:{id: item.id} }">
             <div class="top">
-              <span class="normal" :class="{color : item.good || item.top}" v-text="getTabName(item)"></span>
+              <span class="normal" :class="{color: item.good || item.top}" v-text="getTabName(item)"></span>
               <h3 :title="item.title">{{ item.title }}</h3>
             </div>
             <div class="bottom">
@@ -120,7 +120,7 @@ export default {
       if (item.good) {
         tab = 'good';
       } 
-      if (tab.top) {
+      if (item.top) {
         tab = 'top';
       }
       return topicTab[tab];

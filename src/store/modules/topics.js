@@ -14,17 +14,17 @@ const getters = {
 // 调用commit，提交一个 mutation
 const actions = {
   [types.GET_TOPICS] ({ commit }, params) {
-    commit(types.SHOW_LOADING,true)
+    commit(types.SHOW_LOADING, true)
     getTopics(params, function (res) {
       commit(types.GET_TOPICS, { topics: res.data.data })
-      commit(types.SHOW_LOADING,false)
+      commit(types.SHOW_LOADING, false)
     }, function (err) {
       console.log(err)
     })
   },
   [types.UPDATE_TOPICS] ({ commit }, params) {
     getTopics(params, function (res) {
-      commit(types.UPDATE_TOPICS,{ topics: res.data.data })
+      commit(types.UPDATE_TOPICS, { topics: res.data.data })
     }, function (err) {
       console.log(err)
     })
