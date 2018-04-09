@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import 'github-markdown-css'
 export default {
   name: 'App'
 }

@@ -65,7 +65,7 @@ export default {
     }
     var lastRequestTab = sessionStorage.getItem('tab');
     if (lastRequestTab && lastRequestTab === (this.$route.query.tab || 'all')) {
-      this.searchConfig = JSON.parse(sessionStorage.getItem(searchConfig));
+      this.searchConfig = JSON.parse(sessionStorage.getItem('searchConfig'));
     } else {
       this.getTopics();
     }

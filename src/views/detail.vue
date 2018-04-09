@@ -1,11 +1,11 @@
 <template>  
   <div>
     <c-head></c-head>
-    <div class="detail" v-if="detail.title">
-      <h2 class="title">{{ detail.title }}</h2>
+    <div class="topic" v-if="detail.title">
+      <h2 class="topic-title">{{ detail.title }}</h2>
       <section class="author-info">
         <router-link :to="{name: 'user', params: {loginname: detail.author.loginname}}">
-          <img :src="detail.author.avatar_url" alt="" />
+          <img :src="detail.author.avatar_url" alt="" class="avatar" />
         </router-link>
 
         <div class="center">
@@ -71,6 +71,7 @@
   import { upReply } from '../apis/index'
   import * as types from '../constants/constants'
   import { topicTab } from '../constants/topicTab'
+  import '../static/css/topic.scss'
 
   export default {
     data () {
@@ -118,7 +119,7 @@
 
       addReply (id) {
         if (!this.userInfo.loginname) {
-          this.$route.push({
+          this.$router.push({
             name: 'login',
             query: { redirect: encodeURIComponent(this.$route.name )}
           })
@@ -133,7 +134,7 @@
       //点赞评论
       handleUpReply (item) {
         if (!this.userInfo.loginname) {
-          this.$route.push({
+          this.$router.push({
             name: 'login',
             query: { redirect: encodeURIComponent(this.$route.name) }
           })

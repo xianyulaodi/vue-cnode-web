@@ -132,7 +132,8 @@
   color: #fff;
 }
 
-.topic .author-info .right .name {
+.topic .author-info .right .name,
+.topic .author-info .right .visit-count {
   padding: 5px 0;
   display: block;
 }

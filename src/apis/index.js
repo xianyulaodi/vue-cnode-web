@@ -77,6 +77,16 @@ export const messageCount = (params, succCall, failCall) => {
       succCall(res)
     })
     .catch(function (err) {
-      failCall(err)
+      failCall && failCall(err)
     })
-} 
+}
+
+export const addTopic = (params, succCall, failCall) => {
+  axios.post(basiUrl + '/topics', params)
+    .then(function (res) {
+      succCall(res)
+    })
+    .catch(function (err) {
+      failCall && failCall(err)
+    })
+}

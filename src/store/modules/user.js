@@ -12,11 +12,12 @@ const getters = {
 const actions = {
   [types.LOGIN] ({ commit }, params) {
     login(params, function (res) {
-      if (res.params) {
+      const data = res.data
+      if (data.success) {
         const user = {
-          loginname: res.loginname,
-          id: res.id,
-          params: res.params,
+          loginname: data.loginname,
+          id: data.id,
+          avatar_url: data.avatar_url,
           accesstoken: params.accesstoken
         }
         localStorage.setItem('userInfo', JSON.stringify(user))
@@ -31,6 +32,10 @@ const actions = {
 const mutations = {
   [types.LOGIN] (state, user) {
     state.userInfo = user
+  },
+  [types.LOGIN_OUT] (state) {
+    state.userInfo = {}
+    localStorage.removeItem('userInfo')
   }
 }
 

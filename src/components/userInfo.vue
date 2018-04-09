@@ -19,7 +19,7 @@
   export default {
     methods: {
       handleLoginOut () {
-        this.$store.commit(LOGIN_OUT);
+        this.$store.commit(types.LOGIN_OUT);
         this.$router.push({name: 'list'})
       }
     },
