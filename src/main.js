@@ -8,6 +8,14 @@ import './static/css/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 
+Vue.directive('focus', {
+  inserted: function (el, binding) {
+    if(binding.value) {
+      el.focus();
+    }
+  }
+})
+
 if (localStorage.getItem('userInfo')) {
   store.commit('LOGIN', JSON.parse(localStorage.getItem('userInfo')))
 }

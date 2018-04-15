@@ -188,7 +188,6 @@ body{
   /*height: 120px;*/
   margin: 5px auto;
   text-align: center;
-  background: blue;
   .icon-loading {
     color: #ccc;
     display: inline-block;

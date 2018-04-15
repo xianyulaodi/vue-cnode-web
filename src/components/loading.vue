@@ -33,7 +33,6 @@ export default {
       text-align: center;
       .icon-loading {
         color: #fff;
-        background: red;
         animation: loading 1s infinite linear;
       }
       @keyframes loading {

@@ -37,7 +37,7 @@ export default {
       }
       this.$store.dispatch(types.REPLY, data).then(() => {
         this.content = '';
-        this.$emit('onReply');
+        this.$emit('onReply'); // 自定义函数
       });
     }
   },

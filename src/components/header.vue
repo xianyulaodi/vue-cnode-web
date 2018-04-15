@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <span class="mask" @click="toggleNavBar" v-if="show"></span>
+    <span class="page-cover" @click="toggleNavBar" v-if="show"></span>
     <header class="header-bar">
       <span class="menu-btn" @click="toggleNavBar"></span>
       <span class="info">
@@ -17,6 +17,7 @@
 
 <script>
 import navBar from './navBar'
+import '../static/css/header.scss'
 export default {
   data () {
     return {
@@ -42,27 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .header {
-    .mask {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 30px;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-    .header-bar {
-      overflow: hidden;
-      height: 30px;
-      border-bottom: 1px solid #ccc;
-    }
-    .menu-btn {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      background: red;
-    }
-  }
-</style>

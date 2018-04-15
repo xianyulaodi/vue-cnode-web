@@ -48,3 +48,22 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   `npm install -g rimraf` 然后 `rimraf node_modules`
 
   登录： myAccessToken: "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4"
+
+
+
+[x] get /topics 主题首页
+[x] get /topic/:id 主题详情
+[] post /topics 新建主题
+[] post /topics/update 编辑主题
+[] post /topic_collect/collect 收藏主题
+[] post /topic_collect/de_collect 取消主题
+[] get /topic_collect/:loginname 用户所收藏的主题
+[] post /topic/:topic_id/replies 新建评论
+[x]post /reply/:reply_id/ups 为评论点赞
+
+
+用户
+[] get /user/:loginname 用户详情
+[] get /messages 获取已读和未读消息
+[] post /message/mark_all 标记全部已读
+[] post /message/mark_one/:msg_id 标记单个消息为已读

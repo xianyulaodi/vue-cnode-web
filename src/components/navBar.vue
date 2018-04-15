@@ -74,6 +74,7 @@ export default {
     bottom: 0;
     display: none;
     background: #fff;
+    z-index: 8;
     &.show {
       display: block;
     }

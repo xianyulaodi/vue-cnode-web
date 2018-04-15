@@ -15,14 +15,14 @@
 
         <div class="right">
           <span class="tag" v-text="getTabInfo(detail)" :class="{color: detail.good || detail.top}"></span>
-          <span class="visit-count">{{ detail.visit_count }}</span>
+          <span class="visit-count">{{ detail.visit_count }}次浏览</span>
         </div>
       </section>
 
       <section class="topic-content markdown-body" v-html="detail.content"></section>
 
       <div class="topic-reply">
-        <h3 class="reply-total">{{ detail.reply_count }}</h3>
+        <h3 class="reply-total">{{ detail.reply_count }}回复</h3>
         <ul class="reply-list">
           <li v-for="(item,index) in detail.replies" :key="index">
             <section class="user">
@@ -54,6 +54,7 @@
           </li>
         </ul>
       </div>
+      <c-reply v-if="userInfo.loginname" :topic-id="topicId"></c-reply>
     </div>
     <c-totop></c-totop>
     <c-loading :show="showLoading"></c-loading>
@@ -121,7 +122,7 @@
         if (!this.userInfo.loginname) {
           this.$router.push({
             name: 'login',
-            query: { redirect: encodeURIComponent(this.$route.name )}
+            query: { redirect: encodeURIComponent(this.$route.name ) }
           })
         }
         this.replyId = id;
@@ -133,21 +134,24 @@
 
       //点赞评论
       handleUpReply (item) {
-        if (!this.userInfo.loginname) {
+        const userInfo = this.userInfo;
+        if (!userInfo || !userInfo.loginname) {
           this.$router.push({
             name: 'login',
             query: { redirect: encodeURIComponent(this.$route.name) }
           })
           return;
         }
-        upReply({accesstoken: this.userInfo.accesstoken, replyId: item.id }, function (res) {
-          if (res.success) {
-            if (res.action == 'down') {
-              if(item.ups.indexOf(this.userInfo.id) > -1) {
+        upReply({accesstoken: userInfo.accesstoken, replyId: item.id }, function (res) {
+          const data = res.data;
+          if (data.success) {
+            if (data.action == 'down') {
+              const index = item.ups.indexOf(userInfo.id);
+              if(index > -1) {
                 item.ups.splice(index, 1);
               } 
             } else {
-              item.ups.push(this.userInfo.id);
+              item.ups.push(userInfo.id);
             }
           }
         }, function(err) {
