@@ -45,7 +45,6 @@ import cLoading from '../components/loading'
 import cTotop  from '../components/toTop'
 import { timeFormat } from '../utils/utils'
 import { topicTab } from '../constants/topicTab'
-import { UPDATE_TOPIC_LIST } from '../../../vue-cnode-mobile/src/constants/mutationTypes';
 
 export default {
   data () {

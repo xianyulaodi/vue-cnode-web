@@ -81,10 +81,25 @@ export const messageCount = (params, succCall, failCall) => {
     })
 }
 
+export const messages = (params, succCall, failCall) => {
+  axios.get(basiUrl + '/messages', {
+    params: {
+      accesstoken: params.accesstoken,
+      mdrender: true
+    }
+  })
+    .then(function (res) {
+      succCall(res)
+    })
+    .catch(function (err) {
+      failCall && failCall(err)
+    })
+}
+
 export const addTopic = (params, succCall, failCall) => {
   axios.post(basiUrl + '/topics', params)
     .then(function (res) {
-      succCall(res)
+      succCall(res.data)
     })
     .catch(function (err) {
       failCall && failCall(err)

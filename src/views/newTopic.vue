@@ -8,6 +8,7 @@
           <option value="share">分享</option>
           <option value="ask">问答</option>
           <option value="job">招聘</option>
+          <option value="dev">测试</option>
         </select>
       </div>
       <div class="title">
@@ -37,7 +38,8 @@ export default {
   },
   methods: {
     handleSubmit () {
-      const { title, content } = this.topic;
+      const ctx = this;
+      const { title, content } = ctx.topic;
       if (!title || title.length < 10) {
         alert('标题至少10个字');
         return;
@@ -47,7 +49,7 @@ export default {
         return;
       }
       const params = {
-        ...this.topic,
+        ...ctx.topic,
         accesstoken: this.userInfo.accesstoken
       }
       addTopic(params, function(res) {
@@ -55,7 +57,7 @@ export default {
           sessionStorage.removeItem('scrollTop');
           sessionStorage.removeItem('searchConfig');
           sessionStorage.removeItem('tab');
-          this.$router.push({
+          ctx.$router.push({
             name: 'list'
           })
         }

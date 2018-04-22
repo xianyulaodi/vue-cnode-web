@@ -53,7 +53,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 [x] get /topics 主题首页
 [x] get /topic/:id 主题详情
-[] post /topics 新建主题
+[x] post /topics 新建主题
 [] post /topics/update 编辑主题
 [] post /topic_collect/collect 收藏主题
 [] post /topic_collect/de_collect 取消主题
@@ -64,6 +64,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 用户
 [] get /user/:loginname 用户详情
-[] get /messages 获取已读和未读消息
+[x] get /messages 获取已读和未读消息
+[x] get /message/count 获取未读消息数
 [] post /message/mark_all 标记全部已读
 [] post /message/mark_one/:msg_id 标记单个消息为已读

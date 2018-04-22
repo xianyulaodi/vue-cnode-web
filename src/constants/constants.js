@@ -18,4 +18,8 @@ export const LOGIN = 'LOGIN'
 export const LOGIN_OUT = 'LOGIN_OUT'
 export const GET_USERINFO = 'GET_USERINFO'
 
+export const GET_USERCENTER = "GET_USERCENTER" //用户中心
+
 export const REPLY = 'REPLY'
+
+export const GET_MESSAGE = "GET_MESSAGE";

@@ -3,23 +3,23 @@
     <user-info></user-info>
     <div class="menu-list">
       <router-link :to="{name: 'list', query: {tab: 'all'}}">
-        <i class="iconfont icon-quanbu"></i>全部
+        <i class="iconfont icon-quanbu"></i> 全部
       </router-link>
       <router-link :to="{name: 'list', query: {tab: 'good'}}">
-        <i class="iconfont icon-jinghua"></i>精华
+        <i class="iconfont icon-jinghua"></i> 精华
       </router-link>
       <router-link :to="{name: 'list', query: {tab: 'share'}}">
-        <i class="iconfont icon-share"></i>分享
+        <i class="iconfont icon-share"></i> 分享
       </router-link>
       <router-link :to="{name: 'list', query: {tab: 'ask'}}">
-        <i class="iconfont icon-share"></i>问答
+        <i class="iconfont icon-share"></i> 问答
       </router-link>
       <router-link :to="{name: 'list', query: {tab: 'job'}}">
-        <i class="iconfont icon-wenda"></i>招聘
+        <i class="iconfont icon-wenda"></i> 招聘
       </router-link>
       <router-link :to="{name: 'message'}" style="position: relative">
-        <i class="iconfont icon-xiaoxi"></i>消息
-        <span class="message-count" v-text="`+${messageCount}`" v-if="messageCount"></span>
+        <i class="iconfont icon-xiaoxi"></i> 消息
+        <span class="message-count" v-if="messageCount">{{ messageCount }}</span>
       </router-link>
     </div>
   </nav>
@@ -40,15 +40,18 @@ export default {
     show: Boolean
   },
 
+  beforeMount() {
+    this.getMessageCount();
+  },
   mounted () {
-   this.getMessageCount();
   },
   
   methods:{
     getMessageCount () {
+      const ctx = this;
       if(this.userInfo.loginname) {
         messageCount({accesstoken: this.userInfo.accesstoken}, function(res) {
-          this.messageCount = res.data;
+          ctx.messageCount = res.data.data;
         },function(err) {
 
         })
@@ -93,7 +96,6 @@ export default {
     .message-count {
       position: absolute;
       color: red;
-      left: 40px;
       top: 15px;
     }
   }

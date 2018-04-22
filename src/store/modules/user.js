@@ -1,12 +1,14 @@
 import * as types from '../../constants/constants'
-import { login } from '../../apis/index'
+import { login, userInfo } from "../../apis/index";
 
 const state = {
-  userInfo: {}
+  userInfo: {},
+  userCenter: {}
 }
 
 const getters = {
-  userInfo: state => state.userInfo
+  userInfo: state => state.userInfo,
+  userCenter: state => state.userCenter
 }
 
 const actions = {
@@ -26,6 +28,18 @@ const actions = {
     }, function (err) {
       console.log(err)
     })
+  },
+  [types.GET_USERCENTER]({ commit },params) {
+    commit(types.SHOW_LOADING, true);
+    userInfo(params, function(res) {
+      const data = res.data;
+      if(data.success) {
+        commit(types.SHOW_LOADING, true);
+        commit(types.GET_USERCENTER, data.data);
+      }
+    },function(err) {
+
+    })
   }
 }
 
@@ -36,6 +50,10 @@ const mutations = {
   [types.LOGIN_OUT] (state) {
     state.userInfo = {}
     localStorage.removeItem('userInfo')
+  },
+  [types.GET_USERCENTER](state,data) {
+    console.log(data);
+    state.userCenter = data;
   }
 }
 
