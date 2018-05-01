@@ -34,7 +34,7 @@ const actions = {
     userInfo(params, function(res) {
       const data = res.data;
       if(data.success) {
-        commit(types.SHOW_LOADING, true);
+        commit(types.SHOW_LOADING, false);
         commit(types.GET_USERCENTER, data.data);
       }
     },function(err) {
@@ -52,7 +52,6 @@ const mutations = {
     localStorage.removeItem('userInfo')
   },
   [types.GET_USERCENTER](state,data) {
-    console.log(data);
     state.userCenter = data;
   }
 }

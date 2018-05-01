@@ -32,6 +32,12 @@ export default new Router({
       meta: { requiresAuth: true } // 路由元信息，用于登录验证
     },
     {
+      path: "/update/:topic_id",
+      name: "update",
+      component: NewTopic,
+      meta: { requiresAuth: true } // 路由元信息，用于登录验证
+    },
+    {
       path: "/login",
       name: "login",
       component: Login

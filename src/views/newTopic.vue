@@ -25,18 +25,36 @@
 <script>
 import { mapGetters } from 'vuex'
 import cHead from '../components/header'
-import { addTopic } from '../apis/index'
+import h2m from 'h2m';
+import { addTopic, getDetail, updateTopic } from '../apis/index'
 export default {
   data () {
     return {
       topic: {
         tab: 'share',
         title: '',
-        content: ''
-      }
+        content: '',
+      },
+      topic_id: ''
     }
   },
+  created() {
+    if(this.isUpdate()) {
+      const ctx = this;
+      ctx.topic_id = ctx.$route.params.topic_id;
+      getDetail({ id: ctx.topic_id }, function(res) {
+        const data = res.data.data;
+        ctx.topic.tab = data.tab;
+        ctx.topic.title = data.title;
+        ctx.topic.content = h2m(data.content);
+      },function(err) {});
+    }
+  },
+
   methods: {
+    isUpdate() {
+      return this.$route.params && this.$route.params.topic_id;
+    },
     handleSubmit () {
       const ctx = this;
       const { title, content } = ctx.topic;
@@ -52,6 +70,15 @@ export default {
         ...ctx.topic,
         accesstoken: this.userInfo.accesstoken
       }
+      if(ctx.isUpdate) {
+        params.topic_id = ctx.topic_id;
+        ctx.updateTopic(params);
+      } else {
+        ctx.adNewdTopic(params);
+      }
+    },
+    adNewdTopic(params) {
+      const ctx = this;
       addTopic(params, function(res) {
         if (res.success) {
           sessionStorage.removeItem('scrollTop');
@@ -59,6 +86,17 @@ export default {
           sessionStorage.removeItem('tab');
           ctx.$router.push({
             name: 'list'
+          })
+        }
+      })
+    },
+    updateTopic(params) {
+      const ctx = this;
+      updateTopic(params, function(res) {
+        if (res.success) {
+          ctx.$router.push({
+            name: 'detail',
+            params: {id: res.topic_id }
           })
         }
       })

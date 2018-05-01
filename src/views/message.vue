@@ -18,7 +18,9 @@
         <div v-else>
           <div class="message-content" v-for="(item,index) in (activeItem == 1 ? message.has_read_messages : message.hasnot_read_messages)" :key="index" >
             <section class="author-info">
-              <img class="head" :src="item.author.avatar_url" />
+              <router-link :to="{name: 'user', params: {loginname: item.author.loginname} }">
+                <img class="head" :src="item.author.avatar_url" />
+              </router-link>
               <div class="info">
                 <span class="left">
                   <span class="name">{{ item.author.loginname }}</span>

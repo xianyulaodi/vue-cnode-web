@@ -23,8 +23,10 @@ const actions = {
     })
   },
   [types.UPDATE_TOPICS] ({ commit }, params) {
+    commit(types.SHOW_LIST_LOADING, true);
     getTopics(params, function (res) {
       commit(types.UPDATE_TOPICS, { topics: res.data.data })
+      commit(types.SHOW_LIST_LOADING, false);
     }, function (err) {
       console.log(err)
     })

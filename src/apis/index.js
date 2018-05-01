@@ -105,3 +105,13 @@ export const addTopic = (params, succCall, failCall) => {
       failCall && failCall(err)
     })
 }
+
+export const updateTopic = (params, succCall, failCall) => {
+  axios.post(basiUrl + '/topics/update ', params)
+    .then(function (res) {
+      succCall(res.data)
+    })
+    .catch(function (err) {
+      failCall && failCall(err)
+    })
+}

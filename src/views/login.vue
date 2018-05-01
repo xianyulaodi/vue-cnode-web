@@ -28,7 +28,6 @@ export default {
       }
       this.$store.dispatch(types.LOGIN, data).then(() => {
         const redirect = decodeURIComponent(this.$route.query.redirect || 'list');
-        console.log('redirect',redirect);
         this.$router.push({ name: redirect })
       })
 

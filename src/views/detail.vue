@@ -11,6 +11,11 @@
         <div class="center">
           <span class="author">{{ detail.author.loginname }}</span>
           <time class="info">发布于： {{ detail.create_at | timeFormat }}</time>
+          <router-link 
+              v-if="userInfo.loginname && detail.author.loginname == userInfo.loginname"
+              :to="{name: 'update', params: {topic_id: detail.id}}">
+              编辑
+          </router-link>
         </div>
 
         <div class="right">
@@ -68,7 +73,7 @@
   import cLoading from '../components/loading'
   import cReply from '../components/reply'
   import store from '../store/index'
-  import { timeFormat } from "../utils/utils"
+  import { timeFormat, toast } from "../utils/utils"
   import { upReply } from '../apis/index'
   import * as types from '../constants/constants'
   import { topicTab } from '../constants/topicTab'
@@ -81,8 +86,7 @@
         replyId: ''
       }
     },
-
-    mounted () {
+    created () {
       this.topicId = this.$route.params.id;
       this.getDetail();
     },
@@ -104,7 +108,7 @@
 
     methods: {
       getDetail () {
-        this.$store.dispatch(types.GET_DETAIL,{ id: this.topicId })
+        this.$store.dispatch(types.GET_DETAIL,{ id: this.topicId });
       },
 
       getTabInfo (item) {
@@ -142,6 +146,10 @@
           })
           return;
         }
+        if(item.author.loginname == userInfo.loginname) {
+           toast('不能帮自己点赞');
+           return;
+        }
         upReply({accesstoken: userInfo.accesstoken, replyId: item.id }, function (res) {
           const data = res.data;
           if (data.success) {
@@ -153,7 +161,7 @@
             } else {
               item.ups.push(userInfo.id);
             }
-          }
+          } 
         }, function(err) {
           console.log(err);
         })

@@ -6,7 +6,9 @@
       </router-link>
     </div>
     <div v-else class="login-yes">
-      <img v-if="userInfo.avatar_url" :src="userInfo.avatar_url" alt="" />
+      <router-link :to="{name: 'user', params: {loginname: userInfo.loginname}}" >
+        <img v-if="userInfo.avatar_url" :src="userInfo.avatar_url" alt="" />
+      </router-link>
       <span class="login-name">{{ userInfo.loginname }}</span>
       <span class="login-out" @click="handleLoginOut">退出</span>
     </div>

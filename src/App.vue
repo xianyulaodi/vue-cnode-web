@@ -56,4 +56,22 @@ export default {
     color: #d4d4d4;
   }
 }
+
+.g-toast {
+  position: fixed;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  bottom: 30px;
+  color: #fff;
+  left: 0;
+  right: 0;
+  p {
+    max-width: 200px;
+    margin: 0 auto;
+    border-radius: 30px;
+    background: rgba($color: #000000, $alpha: 0.8);
+    text-align: center;
+  }
+}
 </style>

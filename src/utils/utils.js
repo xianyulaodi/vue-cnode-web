@@ -20,3 +20,17 @@ export const timeFormat = (str) => {
     return parseInt(time / 31536000000) + '年前'
   }
 }
+
+export const toast = (content,showTime = 1000) => {
+  const doc = document;
+  let toastNode = doc.querySelector(".g-toast");
+  if (!toastNode) {
+    toastNode = document.createElement("div");
+    toastNode.className = 'g-toast';
+  } 
+  toastNode.innerHTML = `<p>${content}</p>`;
+  doc.body.appendChild(toastNode);
+  setTimeout(() => {
+    doc.body.removeChild(toastNode);
+  }, showTime);
+}
