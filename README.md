@@ -70,6 +70,7 @@ npm test
   `npm install -g rimraf` 然后 `rimraf node_modules`
 
 ## vue知识点
+
 1. vue的生命周期
   beforeCreate: 组件实例刚刚被创建,组件属性计算之前, el 和 data 并未初始化 
   created: 组件实例创建完成,属性已绑定,但是DOM还未完成,$el属性还不存在，完成了 data 数据的初始化，el没有
@@ -143,9 +144,84 @@ methods: {
 vue没有这方面的通信，可以通过vuex，或者子组件传给给父组件，再由父组件传给子组件来实现，即弄一个中间件来过渡
 
  * keep-alive用法
- keep-alive 是Vue的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM
+ keep-alive 是Vue的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM。尤其是用在一些tab切换上，很有用
  http://www.cnblogs.com/tugenhua0707/p/8076245.html?utm_source=tuicool&utm_medium=referra
 
+3. ref：相当于更好的访问dom。
+```javascript
+<div id="app">
+    <navbar ref="navbar"></navbar>
+    <pagefooter ref="pagefooter"></pagefooter>
+</div>
+
+new Vue({
+    el:'#app',
+    mounted:function () {
+        console.log(this.$refs.navbar.navs);
+        console.log(this.$refs.pagefooter.footer);
+    }
+})
+```
+
+4.  slot-scope 相当于子组件把可以替换的地方的数据传了过来，具体怎样显示由父组件决定
+```javascript
+<template>
+  <div class="father">
+    <h3>这里是父组件</h3>
+    <!--第一次使用：用flex展示数据-->
+    <child>
+      <template slot-scope="user">
+        <div class="tmpl">
+          <span v-for="item in user.data">{{item}}</span>
+        </div>
+      </template>
+
+    </child>
+
+    <!--第二次使用：用列表展示数据-->
+    <child>
+      <template slot-scope="user">
+        <ul>
+          <li v-for="item in user.data">{{item}}</li>
+        </ul>
+      </template>
+
+    </child>
+
+    <!--第三次使用：直接显示数据-->
+    <child>
+      <template slot-scope="user">
+       {{user.data}}
+      </template>
+
+    </child>
+
+    <!--第四次使用：不使用其提供的数据, 作用域插槽退变成匿名插槽-->
+    <child>
+      我就是模板
+    </child>
+  </div>
+</template>
+```
+
+```javascript
+<template>
+  <div class="child">
+
+    <h3>这里是子组件</h3>
+    // 作用域插槽
+    <slot  :data="data"></slot>
+  </div>
+</template>
+
+ export default {
+    data: function(){
+      return {
+        data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']
+      }
+    }
+}
+```
 
 
 <span style="diaplay:none;"> "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4" </span>
