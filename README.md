@@ -223,6 +223,66 @@ new Vue({
 }
 ```
 
+5. .async修饰符
+.sync 修饰符: 当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定。一般用于子组件和父组件有通信的情况
+demo：
+```javascript
+<template>
+    <div class="details">
+        <myComponent :show.sync='valueChild' style="padding: 30px 20px 30px 5px;border:1px solid #ddd;margin-bottom: 10px;"></myComponent>
+        <button @click="changeValue">toggle</button>
+    </div>
+</template>
+<script>
+import Vue from 'vue'
+Vue.component('myComponent', {
+      template: `<div v-if="show">
+                    <p>默认初始值是{{show}}，所以是显示的</p>
+                    <button @click.stop="closeDiv">关闭</button>
+                 </div>`,
+      props:['show'],
+      methods: {
+        closeDiv() {
+          this.$emit('update:show', false); //触发 input 事件，并传入新值
+        }
+      }
+})
+export default{
+    data(){
+        return{
+            valueChild:true,
+        }
+    },
+    methods:{
+        changeValue(){
+            this.valueChild = !this.valueChild
+        }
+    }
+}
+</script>
+
+```
+
+## webpack配置
+
+1. 优化css 
+`optimize-css-assets-webpack-plugin`
+
+2. 删除文件 
+`clean-webpack-plugin`
+
+3. 全局定义模块
+```javascript
+new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+  Vue: ['vue', 'default'],
+  Vuex: ['vuex', 'default']
+}),
+```
+4. extract-text-webpack-plugin 
+所有样式，包括 chunk 的样式，打包都 [name].css 文件内
+new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
 
 <span style="diaplay:none;"> "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4" </span>
 
