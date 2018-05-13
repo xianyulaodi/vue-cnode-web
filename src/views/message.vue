@@ -51,7 +51,6 @@
   import cHead from '../components/header';
   import cLoading from '../components/loading';
   import { message } from '../apis/index';
-  import { timeFormat } from '../utils/utils';
   import * as types from '../constants/constants';
   export default {
     data() {
@@ -76,12 +75,6 @@
       },
       handleTab(index) {
         this.activeItem = index;
-      }
-    },
-
-    filters: {
-      timeFormat (str) {
-        return timeFormat(str);
       }
     },
 

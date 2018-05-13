@@ -1,8 +1,8 @@
 <template>
   <div v-show="show" class="loading-mask">
-      <div class="loading">
-        <i class="iconfont icon-loading"></i>
-      </div>
+    <div class="loading">
+      <i class="iconfont icon-loading"></i>
+    </div>
   </div>
 </template>
 

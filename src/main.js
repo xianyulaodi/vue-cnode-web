@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import './static/css/iconfont/iconfont.css'
+import './static/css/iconfont/iconfont.css';
+import { timeFormat, toast } from './utils';
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,11 @@ Vue.directive('focus', {
       el.focus();
     }
   }
+})
+
+// 全局filter
+Vue.filter("timeFormat", function(str) {
+  return timeFormat(str);
 })
 
 if (localStorage.getItem('userInfo')) {

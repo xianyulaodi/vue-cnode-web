@@ -11,7 +11,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { toast } from "../utils/utils"
 import * as types from '../constants/constants';
 export default {
   data () {

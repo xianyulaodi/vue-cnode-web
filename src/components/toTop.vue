@@ -1,6 +1,5 @@
 <template>
-  <div class="iconfont icon-uptop" v-show="show" @click="backToTop">
-  </div>
+  <div class="iconfont icon-uptop" v-show="show" @click="backToTop"></div>
 </template>
 
 <style lang="scss">

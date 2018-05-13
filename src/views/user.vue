@@ -47,7 +47,6 @@
   import cHead from '../components/header.vue';
   import cLoading from '../components/loading.vue';
   import cTop from '../components/toTop.vue';
-  import { timeFormat } from '../utils/utils';
   import * as types from '../constants/constants';
   export default {
     data() {
@@ -57,13 +56,7 @@
         noData: false
       }
     },
-
-    filters: {
-      timeFormat(str) {
-        return timeFormat(str)
-      }
-    },
-
+    
     created() {
       this.getUserInfo();
     },

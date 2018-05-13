@@ -3,7 +3,7 @@
     <c-header ref="head" :title="headTitle"></c-header>
     <section class="topic">
       <ul class="topic-list">
-        <li v-for="(item,index) in topics" :key="index">
+        <li v-for="item in topics" :key="item.id">
           <router-link key="item.id" :to="{ name: 'detail',params:{id: item.id} }">
             <div class="top">
               <span class="normal" :class="{color: item.good || item.top}" v-text="getTabName(item)"></span>
@@ -43,7 +43,6 @@ import * as types from '../constants/constants'
 import cHeader from '../components/header'
 import cLoading from '../components/loading'
 import cTotop  from '../components/toTop'
-import { timeFormat } from '../utils/utils'
 import { topicTab } from '../constants/topicTab'
 
 export default {
@@ -136,12 +135,6 @@ export default {
           this.scrollDelay = false;
         })
       }
-    }
-  },
-
-  filters: {
-    timeFormat (str) {
-      return timeFormat(str);
     }
   },
 

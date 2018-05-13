@@ -73,7 +73,6 @@
   import cLoading from '../components/loading'
   import cReply from '../components/reply'
   import store from '../store/index'
-  import { timeFormat, toast } from "../utils/utils"
   import { upReply } from '../apis/index'
   import * as types from '../constants/constants'
   import { topicTab } from '../constants/topicTab'
@@ -98,12 +97,6 @@
     beforeRouteEnter (to, from, next) {
       // store.state.detail = {};
       next()
-    },
-
-    filters: {
-      timeFormat (str) {
-        return timeFormat(str);
-      }
     },
 
     methods: {
