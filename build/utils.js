@@ -1,9 +1,14 @@
 'use strict'
 const path = require('path')
 const config = require('../config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin') //extract-text-webpack-plugin 插件通常用来做样式文件的分离，被分离的文件不会被内嵌到 JS bundle 中，而会被放到一个单独的文件中.
 const packageConfig = require('../package.json')
-
+/**
+process 对象提供一系列属性，用于返回系统信息
+process.argv：返回当前进程的命令行参数数组。
+process.env：返回一个对象，成员为当前Shell的环境变量，比如process.env.HOME
+process.pid：当前程的进程号
+*/
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
