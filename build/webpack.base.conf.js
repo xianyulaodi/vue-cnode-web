@@ -2,15 +2,14 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
+const vueLoaderConfig = require('./vue-loader.conf')  // vue加载适配器
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-// 去掉eslink的一些提示，神烦，如果想要，解开注释
+// eslink 的一些配置，如果想要关掉，在配置文件中关掉
 const createLintingRule = () => ({
-  /*
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
@@ -19,7 +18,6 @@ const createLintingRule = () => ({
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
-  */
 })
 
 module.exports = {
@@ -28,9 +26,9 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
-    filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    path: config.build.assetsRoot, //输出 bundle 的路径
+    filename: '[name].js', //  //输出 bundle 的名称
+    publicPath: process.env.NODE_ENV === 'production' // 指定资源文件引用的目录，例如图片
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
