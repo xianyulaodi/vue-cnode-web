@@ -293,6 +293,13 @@ https://segmentfault.com/a/1190000007042048
 <span style="diaplay:none;"> "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4" </span>
 
 
+watch 和 computed 的区别
 
+computed 计算属性只有在相关的数据发生变化时才会改变要计算的属性，当相关数据没有变化是，它会读取缓存。
+而motheds方法 和 watch 方法是的每次都去执行函数。
+如果需要执行一些异步操作，或者开销比较大的操作，那么 watch还是比较好用的
 
-
+官方文档：
+computed vs method
+计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+相比之下，每当触发重新渲染时，调用方法将总会再次执行函数。
