@@ -292,11 +292,6 @@ https://segmentfault.com/a/1190000007042048
 
 <span style="diaplay:none;"> "1654f40d-ffc9-4e0a-8ce2-c08f6d773fe4" </span>
 
-
-vue-cli 中webpack配置学习： https://bailinlin.github.io/2018/05/07/vue-cli-webpack/
-上次学习到：webpack.prod.conf.js
-
-
 ## watch 和 computed 的区别
 computed 计算属性只有在相关的数据发生变化时才会改变要计算的属性，当相关数据没有变化是，它会读取缓存。
 而motheds方法 和 watch 方法是的每次都去执行函数。
@@ -341,4 +336,46 @@ new Vue({
 可以看这篇，写的不错，https://juejin.im/entry/595e48705188250d914dd32c#comment
 主要是用事件队列，Vue 在内部尝试对异步队列使用原生的setImmediate Promise.then和MessageChannel，如果当前执行环境不支持，就采用setTimeout(fn, 0)代替
 
+
 ## v-model原理
+```javascript
+// v-model相当于
+<input v-bind:value="something" v-on:input="something=$event.target.value">
+
+// vue中的实现
+// 父组件：
+// 要让model生效，必须接受一个value,在有新的value时，触发input事件
+<a-input :value.sync="text" ></a-input>
+
+// 子组件
+<template>
+ <div>
+    <input v-model="currentValue" @input="handleModelInput">
+ </div>
+</template>
+<script>
+ export default {
+  props: { 
+    value: [String,Number,Date],
+  },
+  methods: {
+    handleModelInput() {
+      this.$emit("update:value", this.currentValue);
+    }
+  },
+  watch: {
+    value(newValue) {
+      this.currentValue = newValue
+    }
+</script>
+```  
+vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的
+数据劫持主要是通过Object.defineProperty()来实现
+主要通过Object.defineProperty()的get方法和set方法
+通过Object.defineProperty( )对属性设置一个set函数，当数据改变了就会来触发这个函数
+
+
+
+
+vue-cli 中webpack配置学习： https://bailinlin.github.io/2018/05/07/vue-cli-webpack/
+上次学习到：webpack.prod.conf.js
