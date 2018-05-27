@@ -297,4 +297,48 @@ vue-cli 中webpack配置学习： https://bailinlin.github.io/2018/05/07/vue-cli
 上次学习到：webpack.prod.conf.js
 
 
+## watch 和 computed 的区别
+computed 计算属性只有在相关的数据发生变化时才会改变要计算的属性，当相关数据没有变化是，它会读取缓存。
+而motheds方法 和 watch 方法是的每次都去执行函数。
+如果需要执行一些异步操作，或者开销比较大的操作，那么 watch还是比较好用的
 
+官方文档：
+computed vs method
+计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+相比之下，每当触发重新渲染时，调用方法将总会再次执行函数。
+
+
+## Vue.nextTick()
+作用：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+也就是说，数据更新了，但是dom还没更新，此时你想操作dom，则用此方法，则可以等到dom更新后，执行你的操作
+
+使用例子：
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    list: []
+  },
+  mounted: function () {
+    this.get()
+  },
+  methods: {
+    get: function () {
+      this.$http.get('/api/article').then(function (res) {
+        this.list = res.data.data.list
+        // ref  list 引用了ul元素，我想把第一个li颜色变为红色
+        this.$refs.list.getElementsByTagName('li')[0].style.color = 'red'
+      })
+    },
+  }
+})
+```
+我想给第一li更改颜色，但在执行这段代码时，ul下面并没有li，也就是说当前并没有引起视图层的更新。
+在这样的情况下，vue给我们提供了$nextTick方法，如果我们想对未来更新后的视图进行操作，我们只需要把要执行的函数传递给this.$nextTick方法，vue就会给我们做这个工作。
+
+原理：
+可以看这篇，写的不错，https://juejin.im/entry/595e48705188250d914dd32c#comment
+主要是用事件队列，Vue 在内部尝试对异步队列使用原生的setImmediate Promise.then和MessageChannel，如果当前执行环境不支持，就采用setTimeout(fn, 0)代替
+
+## v-model原理
