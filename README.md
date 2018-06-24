@@ -379,3 +379,13 @@ vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方�
 
 vue-cli 中webpack配置学习： https://bailinlin.github.io/2018/05/07/vue-cli-webpack/
 上次学习到：webpack.prod.conf.js
+
+## vue源码以实现原理
+![](https://user-gold-cdn.xitu.io/2018/5/21/16382dd265b21a7d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+vent & v-model: 事件和v-model的实现原理
+template原理
+slot & keep-alive: 内置组件的实现原理
+transition: 过渡的实现原理
+vue-router: 官方路由的实现原理
+vuex: 官方状态管理的实现原理
